@@ -16,26 +16,26 @@ body {
 }
 
 .notification {
-    padding: 10px;
+    padding: 8px;
     width: fit-content;
-    border-radius: 5px;
-    margin: 5px;
-    font: caption;
-    font-size: 12px;
+    border-radius: 3px;
+    margin: 6px;
+    font-family: 'Lato', sans-serif;
     font-weight: bold;
+    font-size: 12px;
 }
 
 .success {
-    background: rgb(114, 204, 114);
+    background-color: rgba(21, 100, 15, 0.95);
     color: #fff;
 }
 
 .inform {
-    background-color: rgb(47, 92, 115);
-    color: #ffffff;
+    background-color: rgba(51, 112, 165, 0.85);
+    color: #fff;
 }
 
 .error {
-    background: rgb(224, 50, 50);
+    background: rgba(181, 82, 85, 0.85);
     color: #fff;
 }

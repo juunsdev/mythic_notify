@@ -1,36 +1,45 @@
 RegisterNetEvent('mythic_notify:client:SendAlert')
 AddEventHandler('mythic_notify:client:SendAlert', function(data)
+	SendAlert(data.type, data.text, data.length, data.style)
+end)
+
+RegisterNetEvent('mythic_notify:client:DoHudText')
+AddEventHandler('mythic_notify:client:DoHudText', function(data)
+	DoHudText(data.type, data.text, data.length, data.style)
+end)
+
+RegisterNetEvent('mythic_notify:client:DoCustomHudText')
+AddEventHandler('mythic_notify:client:DoCustomHudText', function(data)
 	DoCustomHudText(data.type, data.text, data.length, data.style)
 end)
 
-RegisterNetEvent('mythic_notify:client:PersistentHudText')
-AddEventHandler('mythic_notify:client:PersistentHudText', function(data)
-	PersistentHudText(data.action, data.id, data.type, data.text, data.style)
+
+RegisterNetEvent('mythic_notify:client:SendUniqueAlert')
+AddEventHandler('mythic_notify:client:SendUniqueAlert', function(data)
+	SendUniqueAlert(data.id, data.type, data.text, data.length, data.style)
 end)
 
-function DoShortHudText(type, text, style)
+
+RegisterNetEvent('mythic_notify:client:PersistentAlert')
+AddEventHandler('mythic_notify:client:PersistentAlert', function(data)
+	PersistentAlert(data.action, data.id, data.type, data.text, data.style)
+end)
+
+
+function SendAlert(type, text, length, style)
 	SendNUIMessage({
 		type = type,
 		text = text,
-		length = 1000,
+		length = length,
 		style = style
 	})
 end
 
-function DoHudText(type, text, style)
+function DoHudText(type, text, length, style)
 	SendNUIMessage({
 		type = type,
 		text = text,
-		length = 2500,
-		style = style
-	})
-end
-
-function DoLongHudText(type, text, style)
-	SendNUIMessage({
-		type = type,
-		text = text,
-		length = 5000,
+		length = length,
 		style = style
 	})
 end
@@ -44,7 +53,16 @@ function DoCustomHudText(type, text, length, style)
 	})
 end
 
-function PersistentHudText(action, id, type, text, style)
+function SendUniqueAlert(id, type, text, length, style)
+	SendNUIMessage({
+		id = id,
+		type = type,
+		text = text,
+		style = style
+	})
+end
+
+function PersistentAlert(action, id, type, text, style)
 	if action:upper() == 'START' then
 		SendNUIMessage({
 			persist = action,
